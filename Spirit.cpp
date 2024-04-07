@@ -5,7 +5,7 @@
 #include "Spirit.h"
 #include "controller.h"
 
-Spirit::Spirit(int x, int y, int color, const std::string &name, uint64_t clientId)
+Spirit::Spirit(int x, int y, int color, const std::string &name, unsigned long long clientId)
     : locX_(x),
     locY_(y),
     color_(color),

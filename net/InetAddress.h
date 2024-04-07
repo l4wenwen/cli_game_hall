@@ -1,8 +1,16 @@
 #pragma once
 
+#ifdef _WIN32
+#pragma comment(lib, "WS2_32.lib")
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#include <cstdint>
+#else
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#endif
 #include <string>
+
 
 class InetAddress {
 public:

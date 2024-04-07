@@ -6,6 +6,9 @@
 
 #include <string>
 #include <thread>
+#include <vector>
+#include <mutex>
+#include <memory>
 
 
 class ChatArea : public container {

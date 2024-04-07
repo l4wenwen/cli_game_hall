@@ -11,6 +11,7 @@
 #include <chrono>
 #include <sstream>
 #include <random>
+#include <memory>
 
 static uint64_t nrand() {
     std::mt19937 rng(std::random_device{}());
@@ -20,6 +21,23 @@ static uint64_t nrand() {
 }
 
 int main() {
+
+#ifdef _WIN32
+    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    // 获取当前控制台的输出模式
+    DWORD mode;
+    GetConsoleMode(console, &mode);
+
+    // 启用 ANSI 转义序列支持
+    mode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+    SetConsoleMode(console, mode);
+
+    SetConsoleOutputCP(65001);
+
+#endif
+
+
     std::string name;
     std::cout << "Please enter a name in English: ";
     std::getline(std::cin, name);

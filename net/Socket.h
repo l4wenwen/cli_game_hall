@@ -1,12 +1,18 @@
 #pragma once
-
+#include "InetAddress.h"
+#ifndef _WIN32
 #include <sys/socket.h>
 #include <netinet/in.h>
+#endif
 #include <string>
 
-class InetAddress;
-
 static int newSockFd() {
+#ifdef _WIN32
+    WSADATA wsaData;
+    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+        printf("Failed to initialize Winsock\n");
+    }
+#endif
     int fd = socket(AF_INET, SOCK_STREAM, 0);
     return fd;
 }

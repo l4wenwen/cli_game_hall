@@ -13,7 +13,11 @@ InetAddress::InetAddress(uint16_t port, const std::string& ip) {
 
 std::string InetAddress::toIp() const {
     char buf[IP_BUFSIZ] = {0};
+#ifndef _WIN32
     ::inet_ntop(AF_INET, &addr_.sin_addr.s_addr, buf, sizeof buf);
+#else
+//    ::inet_ntoa(AF_INET, &addr_.sin_addr.s_addr, buf, sizeof buf);
+#endif
     return buf;
 }
 

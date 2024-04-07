@@ -3,6 +3,9 @@ project(2048)
 
 set(CMAKE_CXX_STANDARD 11)
 
+set(CMAKE_EXE_LINKER_FLAGS "-static")
+
+
 include_directories(${PROJECT_SOURCE_DIR}/net)
 
 add_executable(2048 main.cpp
@@ -26,3 +29,7 @@ add_executable(2048 main.cpp
         ChatArea.cpp
         ChatArea.h
 )
+
+if (WIN32)
+    target_link_libraries(2048 wsock32)
+endif()

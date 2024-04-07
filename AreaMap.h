@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+#include <unordered_map>
 #include "container.h"
 #include "Spirit.h"
 #include "Logic.h"
@@ -30,7 +32,7 @@ public:
 
     void addPlayer(const Spirit& sp);
 
-    void removePlayer(uint64_t clientId);
+    void removePlayer(unsigned long long clientId);
 
     const Controller& getController() const { return ctl_; }
 private:
@@ -39,7 +41,7 @@ private:
     Spirit me_;
 
 //    std::vector<Spirit> spirits_;
-    std::unordered_map<uint64_t, Spirit> spirits_;
+    std::unordered_map<unsigned long long, Spirit> spirits_;
 
     std::weak_ptr<TcpClient> net_;
     Controller ctl_;

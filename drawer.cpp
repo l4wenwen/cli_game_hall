@@ -27,7 +27,8 @@ U+257x	╰	╱	╲	╳	╴	╵	╶	╷	╸	╹	╺	╻	╼	╽	╾	╿
 #include "controller.h"
 
 namespace dw {
-    inline int convert(int y) { return 2 * y - 1; }
+    int convert(int y) { return 2 * y - 1; }
+
     void box(int x, int y, int width, int height, const std::string& title) {
         ctl::moveCursor(x, convert(y));
         /* print header */

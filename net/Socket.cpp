@@ -3,9 +3,11 @@
 
 #include <unistd.h>
 #include <sys/types.h>
-#include <sys/socket.h>
 #include <strings.h>
+#ifndef _WIN32
+#include <sys/socket.h>
 #include <netinet/tcp.h>
+#endif
 
 Socket::~Socket() {
     ::close(sockfd_);
@@ -36,6 +38,10 @@ int Socket::send(const std::string& msg) const {
 
 std::string Socket::read() const {
     char buffer[1024] = {0};
+#ifdef _WIN32
+    ::recv(sockfd_, buffer, sizeof(buffer), 0);
+#else
     ::read(sockfd_, buffer, sizeof(buffer));
+#endif
     return buffer;
 }

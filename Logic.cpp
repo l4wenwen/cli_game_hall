@@ -6,6 +6,7 @@
 
 #include <utility>
 #include "controller.h"
+#include <cassert>
 
 Logic::Logic()
     : ctlOwner_(SCENE_MAP)

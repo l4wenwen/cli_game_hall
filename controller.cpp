@@ -5,7 +5,11 @@
 #include "controller.h"
 #include <iostream>
 
+#ifdef _WIN32
+#include <conio.h>
+#else
 #include <termios.h>
+#endif
 
 namespace ctl {
     void clear() {
@@ -49,6 +53,7 @@ namespace ctl {
         printf("\x1B[?25h");
     }
 
+#ifndef _WIN32
     char getch() {
         char c;
         struct termios old, cur;
@@ -60,4 +65,9 @@ namespace ctl {
         tcsetattr(0, 0, &old);
         return c;
     }
+#else
+    char getch() {
+        return ::getch();
+    }
+#endif
 }

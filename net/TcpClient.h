@@ -5,14 +5,16 @@
 #include "../controller.h"
 
 #include <iostream>
+#include <memory>
 
 class TcpClient {
 public:
     typedef std::shared_ptr<TcpClient> TcpClientPtr;
 
-    TcpClient(int port, const std::string& ip, uint64_t id)
+    TcpClient(int port, const std::string& ip, unsigned long long id)
     : socket(),
     peerAddr(port, ip),
+    cmd_(0),
     clientId_(id) {
         socket.connect(peerAddr.getSockAddr());
     }
@@ -36,5 +38,5 @@ private:
     InetAddress peerAddr;
     Socket socket;
     char cmd_;
-    uint64_t clientId_;
+    unsigned long long clientId_;
 };

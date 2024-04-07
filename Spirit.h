@@ -8,7 +8,7 @@ class Spirit {
 public:
     Spirit();
 
-    explicit Spirit(int x, int y, int color, const std::string &name, uint64_t clientId);
+    explicit Spirit(int x, int y, int color, const std::string &name, unsigned long long clientId);
 
     Spirit(const Spirit& rhs);
 
@@ -36,12 +36,12 @@ public:
     void setLocX(int x) { locX_ = x; }
     void setLocY(int y) { locY_ = y; }
 
-    uint64_t getClientId() const { return clientId_; }
+    unsigned long long getClientId() const { return clientId_; }
 
 private:
     int locX_;
     int locY_;
     int color_{};
     std::string name_;
-    uint64_t clientId_;
+    unsigned long long clientId_;
 };
